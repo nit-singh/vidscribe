@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Vidscribe</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+	<div class="bg-container">
+		<div class="bg-gradient"></div>
+		<div class="floating-orbs">
+			<div class="orb orb-1"></div>
+			<div class="orb orb-2"></div>
+			<div class="orb orb-3"></div>
+		</div>
+	</div>
+
+	<div class="container">
+		<!-- Navigation -->
+		<nav class="nav">
+			<div class="brand">Vidscribe.ai</div>
+			<ul class="nav-links">
+				<li><a href="#features">Features</a></li>
+				<li><a href="#how">How it works</a></li>
+				<li><a href="#app">App</a></li>
+			</ul>
+			<div class="user-avatar" id="userAvatar" onclick="toggleProfileModal()">U</div>
+		</nav>
+
+		<!-- Hero Section -->
+		<section class="hero" id="top">
+			<h1>Turn Lectures into Exam-Ready Notes in Minutes</h1>
+			<p class="hero-subtitle">
+				AI-powered video summarization that transforms your study workflow. 
+				<span class="typing-animation">Upload → Summarize → Download</span>
+			</p>
+			
+			<div class="hero-upload-section">
+				<div class="upload-zone" id="heroUploadZone">
+					<div class="upload-icon">📁</div>
+					<div class="upload-text">Drop your lecture videos here</div>
+					<div class="upload-subtext">or click to browse files</div>
+					<input type="file" id="heroVideoInput" accept=".mp4,.mkv,.mov,.avi,.m4v" multiple class="file-input">
+				</div>
+			</div>
+
+			<div class="hero-stats" id="features">
+				<div class="stat-card">
+					<div class="stat-icon">🎯</div>
+					<div class="stat-title">AI Planner + Executor</div>
+					<div class="stat-description">Auto-generate study plans and review tasks tailored to your content</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-icon">⚡</div>
+					<div class="stat-title">Batch Processing</div>
+					<div class="stat-description">Upload multiple lectures at once with smart deduplication</div>
+				</div>
+				<div class="stat-card">
+					<div class="stat-icon">📄</div>
+					<div class="stat-title">Multi-Format Export</div>
+					<div class="stat-description">Download as .docx, .tex, or view interactive summaries</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Main Application -->
+		<main class="app" id="app">
+			<!-- Sidebar Dashboard -->
+			<aside class="sidebar">
+				<h2>
+					<span>📊</span>
+					Dashboard
+				</h2>
+				
+				<div class="metrics-grid">
+					<div class="metric-card">
+						<div class="metric-value" id="countTotal">0</div>
+						<div class="metric-label">Total Uploads</div>
+					</div>
+					<div class="metric-card">
+						<div class="metric-value" id="countProcessed">0</div>
+						<div class="metric-label">Processed</div>
+					</div>
+					<div class="metric-card">
+						<div class="metric-value" id="countSkipped">0</div>
+						<div class="metric-label">Skipped</div>
+					</div>
+				</div>
+
+				<div class="history-section">
+					<h3>📚 Recent History</h3>
+					<ul class="history-list" id="historyList">
+						<li class="history-item">No uploads yet</li>
+					</ul>
+				</div>
+			</aside>
+
+			<!-- Main Workspace -->
+			<div class="workspace">
+				<!-- Control Panels -->
+				<div class="panels-grid">
+					<!-- Upload Panel -->
+					<div class="panel">
+						<h2>
+							<span>🚀</span>
+							Upload & Summarize
+						</h2>
+						<p class="panel-subtitle">Files are processed securely on your server. Duplicates are automatically skipped.</p>
+						
+						<div class="upload-controls">
+							<div class="file-input-wrapper">
+								<input type="file" id="videoInput" accept=".mp4,.mkv,.mov,.avi,.m4v" multiple class="file-input">
+								<label for="videoInput" class="file-label">
+									<span>📁</span>
+									<span>Choose Video Files</span>
+									<span>or drag & drop here</span>
+								</label>
+							</div>
+							
+							<div class="file-selected" id="fileSelected" style="display: none;"></div>
+							
+							<div class="button-group">
+								<button type="button" id="summarizeBtn" class="btn btn-primary" disabled>
+									<span>🚀</span>
+									Summarize Videos
+								</button>
+								<button type="button" id="clearBtn" class="btn btn-secondary" disabled>
+									<span>🗑️</span>
+									Clear All
+								</button>
+							</div>
+						</div>
+
+						<!-- Progress Bar -->
+						<div class="progress-container" id="progressContainer">
+							<div class="progress-bar">
+								<div class="progress-fill" id="progressFill"></div>
+							</div>
+							<div class="progress-text" id="progressText">Processing...</div>
+						</div>
+					</div>
+
+					<!-- Settings Panel -->
+					<div class="panel">
+						<h2>
+							<span>⚙️</span>
+							Settings
+						</h2>
+						<p class="panel-subtitle">Configure your summarization preferences</p>
+						
+						<div class="settings-controls">
+							<div class="setting-group">
+								<label for="modelSelect" class="setting-label">Model Size</label>
+								<select id="modelSelect" class="setting-select">
+									<option value="base">Base (Recommended)</option>
+									<option value="small">Small (Faster)</option>
+									<option value="medium">Medium (Better Quality)</option>
+									<option value="large-v3">Large v3 (Best Quality)</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Results Section -->
+				<div class="results-section" id="resultsSection" style="display: none;">
+					<div class="results-header">
+						<h2>
+							<span>🤖</span>
+							AI Summary Results
+						</h2>
+					</div>
+					
+					<div class="ai-bubble" id="aiBubble">
+						<div class="summary-content" id="summaryContent">
+							<!-- Summary bullets will be populated here -->
+						</div>
+					</div>
+
+					<!-- Download Section -->
+					<div class="download-section">
+						<h3>📥 Download Reports</h3>
+						<div class="download-buttons">
+							<a id="docxLink" class="download-btn" href="#" download>
+								<span>📄</span>
+								Download Word (.docx)
+							</a>
+							<a id="texLink" class="download-btn" href="#" download>
+								<span>📝</span>
+								Download LaTeX (.tex)
+							</a>
+						</div>
+					</div>
+
+					<!-- Chat Input Section -->
+					<div class="chat-input-section">
+						<h3>💬 Ask AI About Your Lecture</h3>
+						<div class="chat-input-wrapper">
+							<input type="text" id="chatInput" class="chat-input" placeholder="Ask questions about your lecture content...">
+							<button type="button" id="sendBtn" class="send-btn">
+								<span>➤</span>
+							</button>
+						</div>
+					</div>
+			</div>
+		</div>
+		</main>
+	</div>
+
+	<!-- Profile Modal -->
+	<div class="modal-overlay" id="profileModal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>Profile</h2>
+				<button class="modal-close" onclick="closeProfileModal()">&times;</button>
+			</div>
+			
+			<div class="modal-body">
+				<div class="profile-section">
+					<div class="profile-avatar" id="profileAvatar">U</div>
+					<div class="profile-info">
+						<h3 id="profileName">User Name</h3>
+						<p id="profileEmail">user@example.com</p>
+					</div>
+				</div>
+				
+				<div class="profile-stats">
+					<div class="stat-item">
+						<span class="stat-number" id="profileTotalUploads">0</span>
+						<span class="stat-label">Total Uploads</span>
+					</div>
+					<div class="stat-item">
+						<span class="stat-number" id="profileCompletedUploads">0</span>
+						<span class="stat-label">Completed</span>
+					</div>
+				</div>
+				
+				<div class="profile-settings">
+					<h4>Preferences</h4>
+					<div class="setting-item">
+						<label for="profileModelSize">Model Size</label>
+						<select id="profileModelSize" class="setting-select">
+							<option value="base">Base (Recommended)</option>
+							<option value="small">Small (Faster)</option>
+							<option value="medium">Medium (Better Quality)</option>
+							<option value="large-v3">Large v3 (Best Quality)</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="profile-actions">
+					<button class="btn btn-primary" onclick="saveProfileSettings()">
+						<span>💾</span>
+						Save Settings
+					</button>
+					<button class="btn btn-secondary" onclick="logout()">
+						<span>🚪</span>
+						Logout
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Auth Modal -->
+	<div class="modal-overlay" id="authModal">
+		<div class="modal-content auth-modal">
+			<div class="modal-header">
+				<h2>Welcome to LectureSummarizer.ai</h2>
+				<button class="modal-close" onclick="closeAuthModal()">&times;</button>
+			</div>
+			
+			<div class="modal-body">
+				<div class="auth-options">
+					<div class="auth-option">
+						<h3>Sign In</h3>
+						<p>Access your saved preferences and history</p>
+						<a href="/login.html" class="btn btn-primary">
+							<span>🔑</span>
+							Sign In
+						</a>
+					</div>
+					
+					<div class="auth-divider">
+						<span>or</span>
+					</div>
+					
+					<div class="auth-option">
+						<h3>Sign Up</h3>
+						<p>Create a new account to save your progress</p>
+						<a href="/signup.html" class="btn btn-secondary">
+							<span>📝</span>
+							Sign Up
+						</a>
+					</div>
+					
+					<div class="auth-divider">
+						<span>or</span>
+					</div>
+					
+					<div class="auth-option">
+						<h3>Continue as Guest</h3>
+						<p>Try the app without creating an account</p>
+						<button class="btn btn-demo" onclick="continueAsGuest()">
+							<span>👤</span>
+							Continue as Guest
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="/main.js"></script>
+</body>
+</html>
