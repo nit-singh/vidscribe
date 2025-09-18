@@ -1,6 +1,6 @@
-Nitish Kumar Singh
-Mechanical Engineering
-IIT Guwahati
+# Nitish Kumar Singh
+# Mechanical Engineering
+# IIT Guwahati
 
 # AI Lecture Summarizer
 
