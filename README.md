@@ -1,3 +1,7 @@
+Nitish Kumar Singh
+Mechanical Engineering
+IIT Guwahati
+
 # AI Lecture Summarizer
 
 A powerful web application that uses AI to automatically summarize lecture videos into structured notes, study plans, and downloadable reports.
