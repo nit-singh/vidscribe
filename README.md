@@ -6,7 +6,7 @@
 
 A powerful web application that uses AI to automatically summarize lecture videos into structured notes, study plans, and downloadable reports.
 
-## ✨ Features
+## Features
 
 - **AI-Powered Summarization**: Uses Gemini AI to create comprehensive lecture summaries
 - **Multiple Export Formats**: Download summaries as Word (.docx) or LaTeX (.tex) files
@@ -17,7 +17,7 @@ A powerful web application that uses AI to automatically summarize lecture video
 - **Batch Processing**: Upload multiple videos at once
 - **Real-time Progress**: Visual progress tracking during processing
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -60,7 +60,7 @@ A powerful web application that uses AI to automatically summarize lecture video
 5. **Open your browser**
    Navigate to `http://localhost:3000`
 
-## 🔐 Authentication
+## Authentication
 
 The application supports three modes:
 
@@ -75,7 +75,7 @@ The application supports three modes:
 - **Settings Sync**: Preferences saved across sessions
 - **Personal Dashboard**: View statistics and recent activity
 
-## 🎯 Usage
+## Usage
 
 1. **Sign Up/Login** or continue as guest
 2. **Upload Videos**: Drag and drop or click to select video files
@@ -84,7 +84,7 @@ The application supports three modes:
 5. **Download**: Get your summaries in Word or LaTeX format
 6. **Chat**: Ask questions about your lecture content
 
-## 🛠️ Technical Details
+## Technical Details
 
 ### Backend
 - **Node.js/Express**: Web server and API
@@ -103,7 +103,7 @@ The application supports three modes:
 - **Whisper**: Audio transcription
 - **Multiple Models**: Support for different model sizes
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ├── public/                 # Frontend files
@@ -125,7 +125,7 @@ The application supports three modes:
 └── data/                 # Application data
 ```
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -143,7 +143,7 @@ The application supports three modes:
 - **medium**: High quality
 - **large-v3**: Best quality, slowest
 
-## 🆘 Support
+## Support
 
 For issues and questions:
 1. Check the documentation
